@@ -24,19 +24,16 @@ namespace Casino
                 if (int.TryParse(howMuch, out int amount))
                 {
                     int pot = player.GiveCash(amount) * 2;
-                    if (pot > 0)
+                    if (random.NextDouble() > odds)
                     {
-                        if (random.NextDouble() > odds)
-                        {
-                            int winnings = pot;
-                            Console.WriteLine("You win " + winnings);
-                            player.ReceiveCash(winnings);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Bad luck, you lose.");
-                        }
+                        Console.WriteLine("You win " + pot);
+                        player.ReceiveCash(pot);
                     }
+                    else
+                    {
+                        Console.WriteLine("Bad luck, you lose.");
+                    }
+                    
                 }
                 else
                 {
